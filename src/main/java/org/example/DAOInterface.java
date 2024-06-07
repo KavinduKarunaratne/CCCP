@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public interface DAOInterface<T> {
     // Get item
-    T get(int id) throws SQLException;
+    T get(String code) throws SQLException;
     // Get items
     List<T> getAll() throws SQLException;
     // Save

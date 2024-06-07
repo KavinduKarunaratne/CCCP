@@ -2,19 +2,17 @@ package org.example;
 
 public class ItemDTO {
     private int id;
-    private int code;
+    private String code;
     private String name;
     private int quantity;
-    private String purchaseDate;
-    private String expiryDate;
+    private int price;
 
-    public ItemDTO(int id, int code, String name, int quantity, String purchaseDate, String expiryDate) {
+    public ItemDTO(int id, String  code, String name, int quantity, int price) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.quantity = quantity;
-        this.purchaseDate = purchaseDate;
-        this.expiryDate = expiryDate;
+        this.price = price;
     }
 
     public int getId() {
@@ -25,11 +23,11 @@ public class ItemDTO {
         this.id = id;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -49,31 +47,22 @@ public class ItemDTO {
         this.quantity = quantity;
     }
 
-    public String getPurchaseDate() {
-        return purchaseDate;
+    public int getPrice() {
+        return price;
     }
 
-    public void setPurchaseDate(String purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
-    public String getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(String expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "ItemDTO{" +
                 "id=" + id +
-                ", code=" + code +
+                ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", quantity=" + quantity +
-                ", purchaseDate='" + purchaseDate + '\'' +
-                ", expiryDate='" + expiryDate + '\'' +
+                ", price=" + price +
                 '}';
     }
 }
