@@ -74,8 +74,6 @@ public class Bill {
             return this;
         }
 
-
-
         public Bill build() {
             return bill;
         }

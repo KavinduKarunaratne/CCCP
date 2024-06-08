@@ -56,7 +56,46 @@ public class Main {
 
         }
 
+        if(option.equals("2")) {
+            System.out.print("Enter item code: ");
+            String stockCode = scanner.nextLine();
 
+            StockDAOImpl stockImpl = new StockDAOImpl();
+            StockDTO stockItem = stockImpl.get(stockCode);
+            System.out.println(stockItem);
+
+            Stock stock = new Stock();
+            new QuantityObserver(stock);
+
+            if (stock.getQuantity() < 50) {
+                stock.setQuantity(stockItem.getQuantity());
+
+            }else{
+                System.out.print("Enter restock quantity: ");
+                int restockQuan = scanner.nextInt();
+
+
+
+                int finalQuan = stockItem.getQuantity() - restockQuan;
+
+                stockItem.setQuantity(finalQuan);
+
+                StockDTO stockUpdate = new StockDTO(stockItem.getId(), stockItem.getCode(), stockItem.getName(), stockItem.getQuantity(), stockItem.getPrice(), stockItem.getPurchaseDate(), stockItem.getExpiryDate());
+                stockImpl.update(stockUpdate);
+                System.out.println(stockUpdate);
+
+                ItemDAOImpl itemImpl = new ItemDAOImpl();
+                ItemDTO item = itemImpl.get(stockCode);
+                System.out.println(item);
+
+                int initialQuan = item.getQuantity();
+                item.setQuantity(initialQuan + restockQuan);
+
+                ItemDTO itemUpdate = new ItemDTO(item.getId(), item.getCode(), item.getName(), item.getQuantity(), item.getPrice());
+                itemImpl.update(itemUpdate);
+                System.out.println(itemUpdate);
+            }
+        }
     }
     private static void displayBill(Bill bill) {
         System.out.println("Bill Details:");
